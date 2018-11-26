@@ -1,0 +1,229 @@
+*
+{
+  font-family:Arial, Helvetica, sans-serif;
+}
+body {
+  width : 100%;
+  margin:0;
+  background-color: #EAE7DC;/*#D1E8E2;*/
+}
+#head h1 {
+  font-weight: 800;
+
+}
+#head {
+  background-color: /*#379683;*/#1b2b31;
+   box-shadow:
+  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+  color:white;
+  height: 140px;
+  text-align: center;
+
+
+  padding: 140px;
+}
+ h4 {
+  font-weight: 200;
+  color: #1b2b31;
+ }
+/*
+#mainpic img {
+  width: 100%;
+  height:auto;
+
+  vertical-align: top;
+  
+} */
+
+
+.h1 {
+  background-color:/*#2B7a78;*/ #243a42;
+  padding:30px;
+  text-align:center;
+  color:white;
+  margin-top:0px;
+   box-shadow:
+  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#box {
+  width:80%;
+
+  height:auto; 
+  margin: auto;
+  margin-bottom: 40px;
+  padding: 60px;
+
+}
+ 
+ #it1, #it2{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+ }
+
+
+
+  #box img {
+  margin-top:30px;
+   width:50px;
+   height:50px;
+   padding:40px;
+  
+  border-radius:15px;
+  background-color:/*#AFD275;*/#bdd3db;
+   transition: all 0.5s;
+   display:block;
+  
+}
+#box img:hover {
+  box-shadow:
+  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+ transform:scale(1.2);
+}
+.d1 {
+  background-color: /*#05386B;*/#17252A;
+  overflow:hidden;
+  height:65px;
+   box-shadow:
+  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.d1 a {
+  text-align:center;
+  float:right;
+  display:block;
+  padding: 20px;
+  
+  text-decoration:none;
+  color:#6B6E70;
+}
+
+.d1 a:hover {
+  /*background-color:white;*/
+  color:#F5E6CC;
+
+}
+
+
+#picture img{
+  width: 100%;
+  height:400px;
+   
+}
+div #name:hover {
+  color:white
+}
+div #name {
+  float:left;
+  text-align:center;
+  display:block;
+  padding:20px;
+  font-size:20px;
+  
+  text-decoration:none;
+  color:gray;
+}
+
+#outerbox {
+  width : 800px;
+  height : 40px;
+  background-color: black;
+}
+
+#innerbox {
+  width : 50%;
+  height : 40px;
+  background-image: linear-gradient(green,orange);
+  
+}
+
+
+ #div1 {
+  width : 50px;
+  height: 80px;
+  position: absolute;
+  background-color : red;
+}
+
+#protab {
+  margin:auto;
+  width:80%;
+  border-collapse:collapse;
+  text-align:center;
+  margin-bottom:50px;
+  font-size:17px;
+  color:#2C3531;
+ 
+}
+
+#protab td {
+  /*background-color:#FFCB9A;*/
+  padding:20px;
+  border-bottom:2px solid #17252A;;
+ height:40px; 
+  
+}
+#protab th {
+  /*background-color:#D9B08C;*/
+  border-bottom:2px solid #17252A;;
+  
+}
+
+table {
+  
+  text-align: center;
+  margin:auto;
+
+}
+
+
+table, th, td {
+  
+  
+  padding:50px;
+  
+  border-collapse: collapse;
+}
+#form {
+  display: flex;
+  font-family: arial;
+  color:#116466;
+  font-weight:bold;
+  font-size:20px;
+  justify-content: center;
+  
+  padding:30px;
+  
+  
+}
+
+#form input textarea {
+  box-shadow:
+  0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#site-footer {
+  background-color: #1b2b31;
+  color:#bdd3db;
+  font-weight: 800;
+  text-align: center;
+  padding: 10px;
+}
+#iconset {
+  
+  display: flex;
+  justify-content: center;
+}
+
+#iconset a i {
+  color:/*#F5E6CC;*/#bdd3db;
+  padding :20px;
+}
+footer {
+  text-align: center;
+  padding:20px;
+  color:#6B6E70;
+  background-color:#17252A;
+}
+
