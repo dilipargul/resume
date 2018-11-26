@@ -1,0 +1,242 @@
+<html>
+	<body>
+	<div id = "board">
+	<head>
+	 	<link rel="stylesheet" type="text/css" href="resume.css">
+
+		<meta charset="utf-8" name="viewport" content="width:device-width, initial-scale:1">
+		<title> Paddle-Pop </title>
+		<style type="text/css">
+			body {
+				width: 100%;
+				background-color: #1A1A1D;
+			}
+
+			h1 {
+				text-align: center;
+				
+				color:#C2CAD0;
+				padding:20px;
+
+			}
+			#sc1, #sc2 {
+				box-shadow: 0px 0px  50px grey;
+				background-color: #1A1A1D;
+				width:100%;
+				transition: all 0.7s;
+			}
+
+			#scorecard {
+				width:140px;
+				padding: 20px;
+				
+
+				background-color: #c2B9B0;
+			}
+			#result, #restart {
+				color:white;
+			}
+
+			canvas {
+				justify-content: center;
+				margin-top:0px;
+
+
+
+			}
+
+			h2 {
+				text-align: center;
+			}
+
+			#gdiv {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				background-color: #1A1A1D;
+			}
+
+
+		</style>
+
+	</head>
+	 <div class="d1">
+    <a href="index.html#cnt"> Contact </a>
+    <a href="index.html#prj"> Projects </a>
+    <a href="index.html#skills"> Skills </a>
+    <a href="index.html"> Home </a>
+    <div id="name"> Dilip</div>
+  </div>
+  
+
+
+	
+	<h1>PADDLE-POP</h1>
+
+	
+<div id ="gdiv">
+<div id = "sc1" ><h2 id = "result"></h2></div>
+<canvas id ="gameCanvas" width="800" height="600"></canvas> <div id = "sc2"> <h2 id = "restart"></h2></div></div>
+<script>
+	var scrn1, scrn2;
+	var rstrt;
+	var rez;
+	var canvas;
+	var canvasContext;
+	var ballX =50;
+	var ballY =50;	
+	var ballSpeedX = 7;
+	var ballSpeedY = 4;
+	var paddle1Y = 250;
+	var paddle2Y = 250;	
+	var player1Score =0;
+	var player2Score =0;
+	const PADDLE_HEIGHT = 100;
+	const PADDLE_THICKNESS = 10;
+	const WINNING_SCORE = 5;
+	var showWinScreen = false;	
+function calculateMousePos(evt) {
+	var rect = canvas.getBoundingClientRect();
+	var root = document.documentElement;
+	var mouseX = evt.clientX - rect.left - root.scrollLeft;
+	var mouseY = evt.clientY - rect.top - root.scrollTop;
+	return {
+	x:mouseX,
+	y:mouseY
+}
+}
+function handleMouseClick() {
+	if(showWinScreen) {
+		player1Score =0;
+		player2Score =0;
+		showWinScreen = false;
+		scrn1.style.backgroundColor = "#1A1A1D"; scrn2.style.backgroundColor = "#1A1A1D";
+		}
+			}
+window.onload = function() {
+	scrn1 = document.getElementById('sc1'); /*scrn1.style.backgroundColor = "red"; scrn2.style.backgroundColor = "red";*/
+	scrn2 = document.getElementById('sc2');
+	rstrt = document.getElementById('restart');
+	rez = document.getElementById('result');
+	canvas = document.getElementById('gameCanvas');
+	canvasContext = canvas.getContext('2d');
+	var framesPersecond = 30
+	setInterval(function() {	
+			moveEverything();
+			drawEverything(); 
+		},1000/framesPersecond);
+	canvas.addEventListener('mousedown', handleMouseClick);
+	canvas.addEventListener('mousemove',
+				function(evt) {
+					var mousePos = calculateMousePos(evt);
+					paddle1Y = mousePos.y-(PADDLE_HEIGHT/2);
+}
+);
+}
+function ballReset()
+{
+	if(player1Score >= WINNING_SCORE || player2Score >= WINNING_SCORE){
+	showWinScreen = true;
+
+	}
+	ballSpeedX = -ballSpeedX;
+	ballX = canvas.width/2;
+	ballY = canvas.height/2;
+}
+function computerMovement(){
+	var paddle2YCenter = paddle2Y+(PADDLE_HEIGHT/2);
+	if (paddle2YCenter < ballY-35){
+	paddle2Y += 6;}
+	else if (paddle2YCenter > ballY +35) {
+	paddle2Y -=6;}
+}
+function moveEverything() {
+	if (showWinScreen){
+	return;
+}
+computerMovement();
+		ballX=ballX+ballSpeedX;
+		ballY=ballY+ballSpeedY;
+		if (ballX > canvas.width){
+if (ballY > paddle2Y && ballY <paddle2Y+PADDLE_HEIGHT){
+ballSpeedX = -ballSpeedX;
+var deltaY = ballY-(paddle2Y+PADDLE_HEIGHT/2);
+ballSpeedY = deltaY * 0.35;}
+else{
+player1Score++; // must be before ball reset
+ballReset();
+}
+}
+		if(ballX < 0)
+{
+if (ballY > paddle1Y && ballY <paddle1Y+PADDLE_HEIGHT){
+ballSpeedX = -ballSpeedX;
+var deltaY = ballY-(paddle1Y+PADDLE_HEIGHT/2);
+ballSpeedY = deltaY * 0.35;
+}
+else{
+player2Score++; // must be before ball reset
+ballReset();}
+}
+		if (ballY > canvas.height){
+			ballSpeedY = -ballSpeedY;
+}
+		if (ballY < 0){
+			ballSpeedY = -ballSpeedY;
+}
+}
+function drawNet(){
+for(var i = 0;i<= canvas.height;i+=40){
+	colorRect(canvas.width/2-1,i,2,20, 'white')
+}
+}
+function drawEverything() {
+	// the next line blanks black screen
+	colorRect(0,0,canvas.width,canvas.height, 'black')
+if (showWinScreen) {
+canvasContext.fillStyle = 'white';
+if(player1Score >= WINNING_SCORE)
+{
+/*canvasContext.fillText("You WON", 400,100);*/
+
+rez.innerHTML="You Won !"; 
+
+scrn1.style.backgroundColor = "#6d6d78";
+} else if(player2Score >= WINNING_SCORE) {
+/*canvasContext.fillText("Computer has won", 400,100);*/
+
+restart.innerHTML = "You Lost !";
+
+scrn2.style.backgroundColor = "#6d6d78";
+}
+
+canvasContext.fillText("click to continue", 400,500);
+/*restart.innerHTML = "Click to Play Again";*/
+
+return;
+}
+drawNet();
+	// this line is for paddle
+	colorRect(0,paddle1Y,PADDLE_THICKNESS,PADDLE_HEIGHT, 'white')
+	// this line is for paddle2
+	colorRect(canvas.width-PADDLE_THICKNESS,paddle2Y,PADDLE_THICKNESS,PADDLE_HEIGHT, 'white')
+	// this line draws a ball a red one
+	drawCircle(ballX,ballY,10,'white')
+/*canvasContext.fillText(player1Score, 100,100);*/ rez.innerHTML=player1Score; 
+/*canvasContext.fillText(player2Score, canvas.width-100,100); */restart.innerHTML=player2Score;
+}
+function drawCircle(centerX,centerY, radius, drawcolor){
+	canvasContext.fillStyle='drawcolor';
+	canvasContext.beginPath(); 
+	canvasContext.arc(centerX,centerY,radius,0,Math.PI*2,true);
+	canvasContext.fill();
+}
+function colorRect(leftX, topY, width, height, drawcolor){
+canvasContext.fillStyle = drawcolor;
+canvasContext.fillRect(leftX, topY, width, height);
+}
+</script>
+<footer ><div>Made By Dilip</div></footer>
+</div>
+</body>
+</html>
